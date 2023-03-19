@@ -42,7 +42,10 @@ class GeneratedNums:
         maxNum = max(randomNums[1:])
         self.nums = normalizeNums(minNum, maxNum, randomNums[1:])
     
-    def writeTxt():
+    def getNums(self):
+        return self.nums
+
+    def writeTxt(self):
         writeNumsTxt("numerosGerados.txt", self.nums)
 
 
