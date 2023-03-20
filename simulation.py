@@ -9,6 +9,7 @@ class Simulation:
         self.usedNums = 0
         self.quantityNums = quantityNums
         self.simQueue = SimpleQueue(arrivals, service, servers, capacity, arrivalTime, serviceTime)
+        self.losses = 0
         self.scheduler = []
         self.events = []
 
@@ -20,30 +21,45 @@ class Simulation:
     def putSchedule(self, q, event):
         #sorteio
         if event == 'c':
-            eventTime = self.convert(q.arrivalTime[0],q.arrivalTime[1])
+            eventTime = round(self.convert(q.arrivalTime[0],q.arrivalTime[1]) + self.time,4)
         if event == 's':
-            eventTime = self.convert(q.serviceTime[0],q.serviceTime[1])
+            eventTime = round(self.convert(q.serviceTime[0],q.serviceTime[1]) + self.time,4)
         #guarda eventos no escalonador
         schedule = {'event': event, 'time': eventTime}
         self.scheduler.append(schedule)
+        self.scheduler = sorted(self.scheduler, key=lambda x: float(x['time']))
 
     def execute(self):
-        self.putSchedule(self.simQueue, 'c')
+        #primeira chegada escalonador
+        firstSchedule = {'event': 'c', 'time': self.lastEventTime}
+        self.scheduler.append(firstSchedule)
         while(self.usedNums<self.quantityNums):
-            event = self.scheduler.pop()
+            #pega evento com 'menor tempo'
+            event = self.scheduler.pop(0)
             print(event)
-            break
+            self.time += event.get('time')
+            print(self.time)
+            if event.get('event') == 'c':
+                self.arrive()
+            if event.get('event') == 's':
+                self.served()
+            #debugging dos eventos
+            self.events.append(event)
+            print(self.events)
+            #break
 
     def arrive(self):
         #contabiliza tempo
-        if self.simQueue.clients<capacity:
+        if self.simQueue.clients<self.simQueue.capacity:
             self.simQueue.clients+=1
-            if self.simQueue.clients<=servers:
+            if self.simQueue.clients<=self.simQueue.servers:
                 self.putSchedule(self.simQueue, 's')#saida
+        else:
+            self.losses+=1
         self.putSchedule(self.simQueue, 'c')#chegada
 
     def served(self):
         #contabiliza tempo
         self.simQueue.clients-=1
-        if self.simQueue.clients>=servers:
+        if self.simQueue.clients>=self.simQueue.servers:
             self.putSchedule(self.simQueue, 's')#saida
