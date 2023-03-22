@@ -7,3 +7,4 @@ class SimpleQueue:
         self.clients = 0 #num slots ocupados
         self.arrivalTime = arrivalTime
         self.serviceTime = serviceTime
+        self.timeAtService = [0] * (capacity+1)
