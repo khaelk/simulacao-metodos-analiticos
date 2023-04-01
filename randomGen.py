@@ -30,8 +30,8 @@ def writeNumsTxt(fileName, content):
             f.write(str(i)+ '\n')
 
 class GeneratedNums:
-    def __init__(self, quantity):
-        x0 = 346
+    def __init__(self, quantity, seed):
+        x0 = seed
         a = 214013
         m = 4294967296
         c = 2531011

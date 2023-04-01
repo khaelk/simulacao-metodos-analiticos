@@ -2,10 +2,10 @@ from randomGen import GeneratedNums
 from simpleQueue import SimpleQueue
 
 class Simulation:
-    def __init__(self, initialTime, quantityNums, arrivals, service, servers, capacity, arrivalTime, serviceTime):
+    def __init__(self, initialTime, quantityNums, seed, arrivals, service, servers, capacity, arrivalTime, serviceTime):
         self.time = 0
         self.initialEventTime = initialTime
-        self.nums = GeneratedNums(quantityNums)
+        self.nums = GeneratedNums(quantityNums, seed)
         self.usedNums = 0
         self.quantityNums = quantityNums
         self.simQueue = SimpleQueue(arrivals, service, servers, capacity, arrivalTime, serviceTime)
@@ -39,7 +39,7 @@ class Simulation:
             event = self.scheduler.pop(0)
             print(event, end=' ')
             #contabiliza tempo
-            self.simQueue.timeAtService[self.simQueue.clients]+=round(event.get('time')-self.time,4)
+            self.simQueue.timeAtService[self.simQueue.clients]=round(self.simQueue.timeAtService[self.simQueue.clients] + event.get('time')-self.time,4)
             self.time = event.get('time')
             print(self.simQueue.timeAtService, end='\n\n')
             #print(self.time)
