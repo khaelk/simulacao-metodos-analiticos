@@ -1,5 +1,6 @@
 #import matplotlib.pyplot as plt
 
+#funcao de calculo do numero aleatorio utilizando metodo congruencia linear
 def metodoCongruenciaLinear (a, m, c, x0, randomNums, numDeRandomNums):
     randomNums[0] = x0
 
@@ -7,15 +8,18 @@ def metodoCongruenciaLinear (a, m, c, x0, randomNums, numDeRandomNums):
         #Xi = Xi-1 * a + c mod M
         randomNums[i] = ((randomNums[i-1]*a)+c) % m
 
+#funcao de debug
 def printNums (randomNums):
     for i in randomNums:
         print(i, end=' ')
 
+#normalizacao dos numeros aleatorios
 def normalizeNums (min, max, randomNums):
     for i in range(len(randomNums)):
         randomNums[i] = round((randomNums[i]-min)/(max-min),4)
     return randomNums
 
+#caso queira gerar o grafico demonstrando os numeros aleatorios
 def generateGraph(x,y):
     plt.scatter(x, y)
     plt.title('Pseudo-random generated numbers')
@@ -24,11 +28,13 @@ def generateGraph(x,y):
 
     plt.show()
 
+#caso queira escrever os numeros aleatorios num txt
 def writeNumsTxt(fileName, content):
     with open(fileName, 'w') as f:
         for i in content:
             f.write(str(i)+ '\n')
 
+#classe com numeros gerados
 class GeneratedNums:
     def __init__(self, quantity, seed):
         x0 = seed

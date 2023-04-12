@@ -13,11 +13,13 @@ class Simulation:
         self.scheduler = []
         self.events = []
 
+    #funcao que consome o numero aleatorio para gerar o tempo para o evento no escalonador
     def convert(self, a, b):
         result = (b-a)*self.nums.getNums()[self.usedNums]+a
         self.usedNums+=1
         return result
 
+    #funcao que escalona eventos/realiza sorteio
     def putSchedule(self, q, event):
         #sorteio
         if event == 'c':
@@ -30,6 +32,7 @@ class Simulation:
         #ordena o escalonador
         self.scheduler = sorted(self.scheduler, key=lambda x: float(x['time']))
 
+    #funcao de start da simulacao
     def execute(self):
         #primeira chegada escalonador
         firstSchedule = {'event': 'c', 'time': self.initialEventTime}
@@ -52,6 +55,7 @@ class Simulation:
             #print(self.events)
             #break
 
+    #funcao de chegada na fila simples
     def arrive(self):
         if self.simQueue.clients<self.simQueue.capacity:
             self.simQueue.clients+=1
@@ -61,6 +65,7 @@ class Simulation:
             self.losses+=1
         self.putSchedule(self.simQueue, 'c')#chegada
 
+    #funcao de saida na fila simples
     def served(self):
         self.simQueue.clients-=1
         if self.simQueue.clients>=self.simQueue.servers:
