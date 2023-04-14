@@ -14,9 +14,9 @@ def printNums (randomNums):
         print(i, end=' ')
 
 #normalizacao dos numeros aleatorios
-def normalizeNums (min, max, randomNums):
+def normalizeNums (max, randomNums):
     for i in range(len(randomNums)):
-        randomNums[i] = round((randomNums[i]-min)/(max-min),4)
+        randomNums[i] = round((randomNums[i])/(max),4)
     return randomNums
 
 #caso queira gerar o grafico demonstrando os numeros aleatorios
@@ -44,9 +44,8 @@ class GeneratedNums:
         self.quantity = quantity+1
         randomNums = [0] * self.quantity
         metodoCongruenciaLinear (a, m, c, x0, randomNums, self.quantity)
-        minNum = min(randomNums[1:])
         maxNum = max(randomNums[1:])
-        self.nums = normalizeNums(minNum, maxNum, randomNums[1:])
+        self.nums = normalizeNums(maxNum, randomNums[1:])
     
     def getNums(self):
         return self.nums
@@ -71,9 +70,8 @@ if __name__ == '__main__':
     #vetor 'vazio'
     randomNums = [0] * numDeRandomNums
     metodoCongruenciaLinear (a, m, c, x0, randomNums, numDeRandomNums)
-    minNum = min(randomNums[1:])
     maxNum = max(randomNums[1:])
-    normalizedNums = normalizeNums(minNum, maxNum, randomNums[1:])
+    normalizedNums = normalizeNums(maxNum, randomNums[1:])
     printNums(normalizedNums)
     arrX=[0]*(numDeRandomNums-1)
     for i in range(numDeRandomNums-1):
