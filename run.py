@@ -1,4 +1,5 @@
 from simulation import Simulation
+from simpleQueue import SimpleQueue
 from array import array
 import configparser
 
@@ -8,15 +9,22 @@ config.read("config.ini")
 initialTime = int(config.get("configfile", "initialTime"))
 quantityNums = int(config.get("configfile", "quantityNums"))
 seed = int(config.get("configfile", "seed"))
-arrivals = config.get("configfile", "arrivals")
-service = config.get("configfile", "service")
-servers = int(config.get("configfile", "servers"))
-capacity = int(config.get("configfile", "capacity"))
-arrivalTime = eval(config.get("configfile", "arrivalTime"))
-serviceTime = eval(config.get("configfile", "serviceTime"))
+#primeira fila
+q1 = eval(config.get("configfile", "q1"))
+#filas subsequentes
+q2 = eval(config.get("configfile", "q2"))
+
+queues = []
+
+simQueue1 = SimpleQueue(q1[0], q1[1], q1[2], q1[3])
+queues.append(simQueue1)
+
+for q in q2:
+    simQueue = SimpleQueue(q[0], q[1], -1, q[2])
+    queues.append(simQueue)
 
 #instanciacao e start da simulacao
-sim = Simulation(initialTime, quantityNums, seed, arrivals, service, servers, capacity, arrivalTime, serviceTime)
+sim = Simulation(initialTime, quantityNums, seed, simQueue1)
 sim.execute()
 
 #print de resultados

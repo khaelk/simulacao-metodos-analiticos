@@ -2,13 +2,13 @@ from randomGen import GeneratedNums
 from simpleQueue import SimpleQueue
 
 class Simulation:
-    def __init__(self, initialTime, quantityNums, seed, arrivals, service, servers, capacity, arrivalTime, serviceTime):
+    def __init__(self, initialTime, quantityNums, seed, simpleQueue):
         self.time = 0
         self.initialEventTime = initialTime
         self.nums = GeneratedNums(quantityNums, seed)
         self.usedNums = 0
         self.quantityNums = quantityNums
-        self.simQueue = SimpleQueue(arrivals, service, servers, capacity, arrivalTime, serviceTime)
+        self.simQueue = simpleQueue
         self.losses = 0
         self.scheduler = []
         self.events = []
@@ -42,18 +42,19 @@ class Simulation:
             event = self.scheduler.pop(0)
             print(event, end=' ')
             #contabiliza tempo
+
+            #para cada fila contabilizar o tempo!!!
+
             self.simQueue.timeAtService[self.simQueue.clients]=round(self.simQueue.timeAtService[self.simQueue.clients] + event.get('time')-self.time,4)
             self.time = event.get('time')
             print(self.simQueue.timeAtService, end='\n\n')
             #print(self.time)
             if event.get('event') == 'c':
+                #adicionar parametro de qual fila e a chegada
                 self.arrive()
             if event.get('event') == 's':
+                #adicionar parametro de qual fila e a saida
                 self.served()
-            #debugging dos eventos
-            #self.events.append(event)
-            #print(self.events)
-            #break
 
     #funcao de chegada na fila simples
     def arrive(self):
