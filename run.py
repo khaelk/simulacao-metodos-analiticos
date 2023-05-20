@@ -11,24 +11,23 @@ quantityNums = int(config.get("configfile", "quantityNums"))
 seed = int(config.get("configfile", "seed"))
 #primeira fila
 q1 = eval(config.get("configfile", "q1"))
-#filas subsequentes
+#segunda fila
 q2 = eval(config.get("configfile", "q2"))
 
-queues = []
-
-simQueue1 = SimpleQueue(q1[0], q1[1], q1[2], q1[3])
-queues.append(simQueue1)
-
-for q in q2:
-    simQueue = SimpleQueue(q[0], q[1], -1, q[2])
-    queues.append(simQueue)
+simQueue1 = SimpleQueue(1, q1[0], q1[1], q1[2], q1[3])
+simQueue2 = SimpleQueue(2, q2[0], q2[1], -1, q2[2])
 
 #instanciacao e start da simulacao
-sim = Simulation(initialTime, quantityNums, seed, simQueue1)
+sim = Simulation(initialTime, quantityNums, seed, simQueue1, simQueue2)
 sim.execute()
 
 #print de resultados
-for index in range(len(sim.simQueue.timeAtService)):
-    print(f'State: {index}, Time: {sim.simQueue.timeAtService[index]}, Probability: {round((sim.simQueue.timeAtService[index]/sim.time)*100,4)}%')
+print('PROBABILIDADES DE ESTADO FILA 1')
+for index in range(len(sim.simQueue1.timeAtService)):
+    print(f'State: {index}, Time: {sim.simQueue1.timeAtService[index]}, Probability: {round((sim.simQueue1.timeAtService[index]/sim.time)*100,4)}%')
+print('PROBABILIDADES DE ESTADO FILA 2')
+for index in range(len(sim.simQueue2.timeAtService)):
+    print(f'State: {index}, Time: {sim.simQueue2.timeAtService[index]}, Probability: {round((sim.simQueue2.timeAtService[index]/sim.time)*100,4)}%')
+print("tempo simulacao: "+str(sim.time)+'s')
 print("perdas: ",sim.losses)
-input()
+#input()

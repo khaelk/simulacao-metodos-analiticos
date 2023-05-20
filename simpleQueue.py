@@ -1,5 +1,6 @@
 class SimpleQueue:
-    def __init__(self, servers, capacity, arrivalTime, serviceTime):
+    def __init__(self, index, servers, capacity, arrivalTime, serviceTime):
+        self.index = index
         self.servers = servers
         self.capacity = capacity
         self.clients = 0 #num slots ocupados
