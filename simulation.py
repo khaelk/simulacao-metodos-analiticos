@@ -22,6 +22,8 @@ class Simulation:
 
     #funcao que escalona eventos/realiza sorteio
     def putSchedule(self, event):
+        if self.usedNums>=self.quantityNums:
+            return
         #sorteio
         if event == 'ch1':
             eventTime = round(self.convert(self.simQueue1.arrivalTime[0],self.simQueue1.arrivalTime[1]) + self.time,4)

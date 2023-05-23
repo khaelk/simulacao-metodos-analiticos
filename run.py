@@ -30,4 +30,4 @@ for index in range(len(sim.simQueue2.timeAtService)):
     print(f'State: {index}, Time: {sim.simQueue2.timeAtService[index]}, Probability: {round((sim.simQueue2.timeAtService[index]/sim.time)*100,4)}%')
 print("tempo simulacao: "+str(sim.time)+'s')
 print("perdas: ",sim.losses)
-#input()
+input()
