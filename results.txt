@@ -1,6 +1,6 @@
 TESTE 1
 [configfile]
-initialTime: 1
+initialTime: [["q1", 1]]
 quantityNums: 100000
 seed: 346
 #name, servers, capacity, arrivalTime, serviceTime, networking
