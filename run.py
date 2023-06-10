@@ -34,4 +34,6 @@ for queue in sim.queuesList:
             break
         limiter += 1
     print(f'Losses: {queue.losses}')
+print(f'Tempo simulacao: {sim.time}')
+print(f'Perdas totais: {sim.losses}')
 #input()
