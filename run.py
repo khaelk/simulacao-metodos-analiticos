@@ -8,7 +8,7 @@ inf = 999999
 #leitura do arquivo de configuracao
 config = configparser.ConfigParser()
 config.read("config.ini")
-initialTime = int(config.get("configfile", "initialTime"))
+initialTime = eval(config.get("configfile", "initialTime"))
 quantityNums = int(config.get("configfile", "quantityNums"))
 seed = int(config.get("configfile", "seed"))
 #get filas

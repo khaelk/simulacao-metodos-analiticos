@@ -2,7 +2,7 @@
 Para executar o simulador é necessário primeiramente ajustar os parâmetros da simulação em tandem
 no arquivo de configuração "config.ini" conforme o seguinte modelo:
 [configfile]    -> deve-se seguir este padrão no 'título'
-initialTime: 2  -> tempo inicial em que chega o primeiro cliente
+initialTime: [["q1", 1]]-> tempo inicial em que chega o primeiro cliente em cada fila que chegam clientes de fora do sistema
 quantityNums: 10-> quantidade de números aleatórios
 seed: 348       -> seed dos números aleatórios
 

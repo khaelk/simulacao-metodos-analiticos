@@ -43,10 +43,11 @@ class Simulation:
     def execute(self):
         #primeiras chegadas escalonador
         for queue in self.queuesList:
-            if queue.arrivalTime != -1:
-                #firstArrival = round(self.convert(queue.arrivalTime[0],queue.arrivalTime[1]) + self.time,4)
-                firstSchedule = {'event': 'ch1', 'time': self.initialEventTime, 'queue': queue}
-                self.scheduler.append(firstSchedule)
+            for time in self.initialEventTime:
+                if time[0] == queue.name:
+                    #firstArrival = round(self.convert(queue.arrivalTime[0],queue.arrivalTime[1]) + self.time,4)
+                    firstSchedule = {'event': 'ch1', 'time': time[1], 'queue': queue}
+                    self.scheduler.append(firstSchedule)
         while(self.usedNums<self.quantityNums):
             #pega evento com 'menor tempo'
             event = self.scheduler.pop(0)
