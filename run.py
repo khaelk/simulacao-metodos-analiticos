@@ -21,7 +21,7 @@ for q in queuesListArr:
 
 
 #instanciacao e start da simulacao
-sim = Simulation(initialTime, quantityNums, seed, queuesListObj, -1, -1)
+sim = Simulation(initialTime, quantityNums, seed, queuesListObj)
 sim.execute()
 
 for queue in sim.queuesList:

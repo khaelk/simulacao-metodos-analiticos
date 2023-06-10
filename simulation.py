@@ -2,15 +2,13 @@ from randomGen import GeneratedNums
 from simpleQueue import SimpleQueue
 
 class Simulation:
-    def __init__(self, initialTime, quantityNums, seed, queuesList, simpleQueue1, simpleQueue2):
+    def __init__(self, initialTime, quantityNums, seed, queuesList):
         self.time = 0
         self.initialEventTime = initialTime
         self.nums = GeneratedNums(quantityNums, seed)
         self.usedNums = 0
         self.quantityNums = quantityNums
         self.queuesList = queuesList
-        self.simQueue1 = simpleQueue1
-        self.simQueue2 = simpleQueue2
         self.losses = 0
         self.scheduler = []
         self.events = []
