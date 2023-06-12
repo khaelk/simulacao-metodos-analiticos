@@ -47,9 +47,19 @@ class Simulation:
                     firstSchedule = {'event': 'ch1', 'time': time[1], 'queue': queue}
                     self.scheduler.append(firstSchedule)
         while(self.usedNums<self.quantityNums):
+            #print(self.scheduler)
             #pega evento com 'menor tempo'
             event = self.scheduler.pop(0)
-            print(event, end='\n\n')
+            #print(event, end='\n\n')
+            e = 'event'
+            tm = 'time'
+            qe1='queue1'
+            qe2='queue2'
+            qe='queue'
+            if event.get('event') == 'p12':
+                print(f'event: {event.get(e)}, time: {event.get(tm)}, queue1: {event.get(qe1).name}, queue2: {event.get(qe2).name}, {event.get(qe1).clients}, {event.get(qe2).clients}', end='\n\n')
+            else:
+                print(f'event: {event.get(e)}, time: {event.get(tm)}, queue: {event.get(qe).name}, {event.get(qe).clients}', end='\n\n')
             #contabiliza tempo
             #para cada fila contabilizar o tempo
             for queue in self.queuesList:
@@ -109,13 +119,13 @@ class Simulation:
                     if q0.name == dest:
                         q2 = q0
                 self.putSchedule('p12', q1, q2)#agenda tranferencia f1 para f2
-                if q2.clients<q2.capacity:
-                    q2.clients+=1
-                    if q2.clients<=q2.servers:
-                        self.putSchedule('sa2', q2, -1)#saida f2
-                else:
-                    self.losses+=1
-                    q2.losses+=1
+        if q2.clients<q2.capacity:
+            q2.clients+=1
+            if q2.clients<=q2.servers:
+                self.putSchedule('sa2', q2, -1)#saida f2
+        else:
+            self.losses+=1
+            q2.losses+=1
 
     #funcao de saida na fila
     def sa2(self, q):
