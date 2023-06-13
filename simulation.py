@@ -114,11 +114,11 @@ class Simulation:
                 self.putSchedule('sa2', q1, -1)#agenda saida do sistema
             #se dest = transferencia
             else:
-                q2 = ''
+                q = ''
                 for q0 in self.queuesList:
                     if q0.name == dest:
-                        q2 = q0
-                self.putSchedule('p12', q1, q2)#agenda tranferencia f1 para f2
+                        q = q0
+                self.putSchedule('p12', q1, q)#agenda tranferencia f1 para f2
         if q2.clients<q2.capacity:
             q2.clients+=1
             if q2.clients<=q2.servers:
