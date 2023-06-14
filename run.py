@@ -16,6 +16,7 @@ queuesListArr = eval(config.get("configfile", "queuesList"))
 queuesListObj = []
 
 for q in queuesListArr:
+    q[5].sort(key = lambda x:x[1])
     simQueue = SimpleQueue(q[0], q[1], q[2], q[3], q[4], q[5])
     queuesListObj.append(simQueue)
 
@@ -34,6 +35,6 @@ for queue in sim.queuesList:
             break
         limiter += 1
     print(f'Losses: {queue.losses}')
-print(f'Tempo simulacao: {sim.time}')
-print(f'Perdas totais: {sim.losses}')
+print(f'Simulation time: {sim.time}')
+print(f'Total losses: {sim.losses}')
 #input()
