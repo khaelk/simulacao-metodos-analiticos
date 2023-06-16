@@ -37,4 +37,4 @@ for queue in sim.queuesList:
     print(f'Losses: {queue.losses}')
 print(f'Simulation time: {sim.time}')
 print(f'Total losses: {sim.losses}')
-#input()
+input()
