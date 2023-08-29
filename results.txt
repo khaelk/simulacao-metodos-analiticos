@@ -1,142 +1,60 @@
-TESTE 1
 [configfile]
-initialTime: 2
-quantityNums: 16
-seed: 346
-#servers, capacity, arrivalTime, serviceTime
-q1: [2, 3, [2,3], [2,5]]
-#servers, capacity, serviceTime
-q2: [1, 3, [3,5]]
-
-PROBABILIDADES DE ESTADO FILA 1
-State: 0, Time: 2.8897, Probability: 18.1426%
-State: 1, Time: 8.1104, Probability: 50.9201%
-State: 2, Time: 4.5509, Probability: 28.5722%
-State: 3, Time: 0.3767, Probability: 2.3651%
-PROBABILIDADES DE ESTADO FILA 2
-State: 0, Time: 5.6609, Probability: 35.5412%
-State: 1, Time: 8.5947, Probability: 53.9607%
-State: 2, Time: 0.3241, Probability: 2.0348%
-State: 3, Time: 1.348, Probability: 8.4632%
-tempo simulacao: 15.9277s
-perdas:  0
-
-=====================================================
-TESTE 2
-[configfile]
-initialTime: 2
+initialTime: [["q1", 1]]
 quantityNums: 100000
 seed: 346
-#servers, capacity, arrivalTime, serviceTime
-q1: [2, 3, [2,3], [2,5]]
-#servers, capacity, serviceTime
-q2: [1, 3, [3,5]]
+#name, servers, capacity, arrivalTime, serviceTime, networking
+queuesList: [["q1", 1, inf, [1, 4], [1, 1.5], [["q2", 0.8], ["q3", 0.2]]], ["q2", 3, 5, -1, [5, 10], [["q1", 0.3], ["q3", 0.5]]], ["q3", 2, 8, -1, [10, 20], [["q2", 0.7]]]]
 
-PROBABILIDADES DE ESTADO FILA 1
-State: 0, Time: 1905.6841, Probability: 2.0005%
-State: 1, Time: 52968.0397, Probability: 55.6033%
-State: 2, Time: 39886.2591, Probability: 41.8707%
-State: 3, Time: 500.5804, Probability: 0.5255%
-PROBABILIDADES DE ESTADO FILA 2
-State: 0, Time: 5.3365, Probability: 0.0056%
-State: 1, Time: 507.1039, Probability: 0.5323%
-State: 2, Time: 37495.5276, Probability: 39.361%
-State: 3, Time: 57252.5953, Probability: 60.101%
-tempo simulacao: 95260.5633s
-perdas:  14274
-
-=====================================================
-TESTE 3
-[configfile]
-initialTime: 2
-quantityNums: 100000
-seed: 448
-#servers, capacity, arrivalTime, serviceTime
-q1: [2, 3, [2,3], [2,5]]
-#servers, capacity, serviceTime
-q2: [1, 3, [3,5]]
-
-PROBABILIDADES DE ESTADO FILA 1
-State: 0, Time: 1939.4896, Probability: 2.0382%
-State: 1, Time: 53265.4756, Probability: 55.9766%
-State: 2, Time: 39429.327, Probability: 41.4362%
-State: 3, Time: 522.4349, Probability: 0.549%
-PROBABILIDADES DE ESTADO FILA 2
-State: 0, Time: 4.0687, Probability: 0.0043%
-State: 1, Time: 488.8447, Probability: 0.5137%
-State: 2, Time: 37498.6176, Probability: 39.4072%
-State: 3, Time: 57165.1961, Probability: 60.0748%
-tempo simulacao: 95156.7271s
-perdas:  14296
-
-=====================================================
-TESTE 4
-[configfile]
-initialTime: 2
-quantityNums: 100000
-seed: 569
-#servers, capacity, arrivalTime, serviceTime
-q1: [2, 3, [2,3], [2,5]]
-#servers, capacity, serviceTime
-q2: [1, 3, [3,5]]
-
-PROBABILIDADES DE ESTADO FILA 1
-State: 0, Time: 1945.6677, Probability: 2.0427%
-State: 1, Time: 53359.5382, Probability: 56.021%
-State: 2, Time: 39451.1416, Probability: 41.4189%
-State: 3, Time: 492.751, Probability: 0.5173%
-PROBABILIDADES DE ESTADO FILA 2
-State: 0, Time: 4.0867, Probability: 0.0043%
-State: 1, Time: 440.863, Probability: 0.4629%
-State: 2, Time: 37474.4516, Probability: 39.3436%
-State: 3, Time: 57329.6972, Probability: 60.1892%
-tempo simulacao: 95249.0985s
-perdas:  14286
-
-=====================================================
-TESTE 5
-[configfile]
-initialTime: 2
-quantityNums: 100000
-seed: 621
-#servers, capacity, arrivalTime, serviceTime
-q1: [2, 3, [2,3], [2,5]]
-#servers, capacity, serviceTime
-q2: [1, 3, [3,5]]
-
-PROBABILIDADES DE ESTADO FILA 1
-State: 0, Time: 1992.8328, Probability: 2.0913%
-State: 1, Time: 53274.2174, Probability: 55.9072%
-State: 2, Time: 39506.4222, Probability: 41.459%
-State: 3, Time: 516.9357, Probability: 0.5425%
-PROBABILIDADES DE ESTADO FILA 2
-State: 0, Time: 4.9295, Probability: 0.0052%
-State: 1, Time: 511.1008, Probability: 0.5364%
-State: 2, Time: 37462.2186, Probability: 39.3137%
-State: 3, Time: 57312.1592, Probability: 60.1447%
-tempo simulacao: 95290.4081s
-perdas:  14301
-
-=====================================================
-TESTE 6
-[configfile]
-initialTime: 2
-quantityNums: 100000
-seed: 221
-#servers, capacity, arrivalTime, serviceTime
-q1: [2, 3, [2,3], [2,5]]
-#servers, capacity, serviceTime
-q2: [1, 3, [3,5]]
-
-PROBABILIDADES DE ESTADO FILA 1
-State: 0, Time: 2000.9992, Probability: 2.1006%
-State: 1, Time: 53304.9531, Probability: 55.9594%
-State: 2, Time: 39441.7858, Probability: 41.4059%
-State: 3, Time: 508.6681, Probability: 0.534%
-PROBABILIDADES DE ESTADO FILA 2
-State: 0, Time: 5.7824, Probability: 0.0061%
-State: 1, Time: 526.1487, Probability: 0.5523%
-State: 2, Time: 37365.8948, Probability: 39.2266%
-State: 3, Time: 57358.5803, Probability: 60.2149%
-tempo simulacao: 95256.4062s
-perdas:  14280
+Queue: q1
+State: 0, Time: 14471.6982, Probability: 35.6877%
+State: 1, Time: 20646.753, Probability: 50.9156%
+State: 2, Time: 4851.9603, Probability: 11.9651%
+State: 3, Time: 557.5225, Probability: 1.3749%
+State: 4, Time: 22.7404, Probability: 0.0561%
+State: 5, Time: 0.2724, Probability: 0.0007%
+State: 6, Time: 0, Probability: 0.0%
+State: 7, Time: 0, Probability: 0.0%
+State: 8, Time: 0, Probability: 0.0%
+State: 9, Time: 0, Probability: 0.0%
+State: 10, Time: 0, Probability: 0.0%
+State: 11, Time: 0, Probability: 0.0%
+State: 12, Time: 0, Probability: 0.0%
+State: 13, Time: 0, Probability: 0.0%
+State: 14, Time: 0, Probability: 0.0%
+State: 15, Time: 0, Probability: 0.0%
+State: 16, Time: 0, Probability: 0.0%
+State: 17, Time: 0, Probability: 0.0%
+State: 18, Time: 0, Probability: 0.0%
+State: 19, Time: 0, Probability: 0.0%
+State: 20, Time: 0, Probability: 0.0%
+State: 21, Time: 0, Probability: 0.0%
+State: 22, Time: 0, Probability: 0.0%
+State: 23, Time: 0, Probability: 0.0%
+State: 24, Time: 0, Probability: 0.0%
+State: 25, Time: 0, Probability: 0.0%
+State: 26, Time: 0, Probability: 0.0%
+State: 27, Time: 0, Probability: 0.0%
+State: 28, Time: 0, Probability: 0.0%
+State: 29, Time: 0, Probability: 0.0%
+Losses: 0
+Queue: q2
+State: 0, Time: 34.9537, Probability: 0.0862%
+State: 1, Time: 446.0046, Probability: 1.0999%
+State: 2, Time: 2665.4959, Probability: 6.5732%
+State: 3, Time: 8747.2749, Probability: 21.5711%
+State: 4, Time: 15089.5599, Probability: 37.2114%
+State: 5, Time: 13567.6578, Probability: 33.4583%
+Losses: 4774
+Queue: q3
+State: 0, Time: 2.4322, Probability: 0.006%
+State: 1, Time: 1.4557, Probability: 0.0036%
+State: 2, Time: 2.0153, Probability: 0.005%
+State: 3, Time: 8.3813, Probability: 0.0207%
+State: 4, Time: 8.9653, Probability: 0.0221%
+State: 5, Time: 131.0972, Probability: 0.3233%
+State: 6, Time: 2940.8824, Probability: 7.2523%
+State: 7, Time: 12693.9696, Probability: 31.3038%
+State: 8, Time: 24761.7478, Probability: 61.0633%
+Losses: 6663
+Simulation time: 40550.9468
+Total losses: 11437

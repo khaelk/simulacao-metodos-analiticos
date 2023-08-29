@@ -1,0 +1,47 @@
+!PARAMETERS
+seeds:
+-  346
+
+arrivals: 
+   recepcao: 5.0
+
+queues: 
+   recepcao: 
+      servers: 4
+      capacity: 30
+      minArrival: 5.0
+      maxArrival: 6.0
+      minService: 10.0
+      maxService: 15.0
+   filaPrioridade: 
+      servers: 4
+      minService: 5.0
+      maxService: 7.0
+   filaComum:
+      servers: 10
+      minService: 20.0
+      maxService: 30.0
+   atendimento:
+      servers: 15
+      minService: 30.0
+      maxService: 40.0
+      
+network: 
+-  source: recepcao
+   target: filaPrioridade
+   probability: 0.3
+-  source: recepcao
+   target: filaComum
+   probability: 0.7
+-  source: filaPrioridade
+   target: atendimento
+   probability: 0.9
+-  source: filaComum
+   target: recepcao
+   probability: 0.2
+-  source: filaComum
+   target: atendimento
+   probability: 0.7
+-  source: atendimento
+   target: recepcao
+   probability: 0.3

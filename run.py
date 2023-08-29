@@ -3,31 +3,38 @@ from simpleQueue import SimpleQueue
 from array import array
 import configparser
 
+inf = 999999
+
 #leitura do arquivo de configuracao
 config = configparser.ConfigParser()
 config.read("config.ini")
-initialTime = int(config.get("configfile", "initialTime"))
+initialTime = eval(config.get("configfile", "initialTime"))
 quantityNums = int(config.get("configfile", "quantityNums"))
 seed = int(config.get("configfile", "seed"))
-#primeira fila
-q1 = eval(config.get("configfile", "q1"))
-#segunda fila
-q2 = eval(config.get("configfile", "q2"))
+#get filas
+queuesListArr = eval(config.get("configfile", "queuesList"))
+queuesListObj = []
 
-simQueue1 = SimpleQueue(1, q1[0], q1[1], q1[2], q1[3])
-simQueue2 = SimpleQueue(2, q2[0], q2[1], -1, q2[2])
+for q in queuesListArr:
+    q[5].sort(key = lambda x:x[1])
+    simQueue = SimpleQueue(q[0], q[1], q[2], q[3], q[4], q[5])
+    queuesListObj.append(simQueue)
+
 
 #instanciacao e start da simulacao
-sim = Simulation(initialTime, quantityNums, seed, simQueue1, simQueue2)
+sim = Simulation(initialTime, quantityNums, seed, queuesListObj)
 sim.execute()
 
-#print de resultados
-print('PROBABILIDADES DE ESTADO FILA 1')
-for index in range(len(sim.simQueue1.timeAtService)):
-    print(f'State: {index}, Time: {sim.simQueue1.timeAtService[index]}, Probability: {round((sim.simQueue1.timeAtService[index]/sim.time)*100,4)}%')
-print('PROBABILIDADES DE ESTADO FILA 2')
-for index in range(len(sim.simQueue2.timeAtService)):
-    print(f'State: {index}, Time: {sim.simQueue2.timeAtService[index]}, Probability: {round((sim.simQueue2.timeAtService[index]/sim.time)*100,4)}%')
-print("tempo simulacao: "+str(sim.time)+'s')
-print("perdas: ",sim.losses)
+for queue in sim.queuesList:
+    print(f'Queue: {queue.name}')
+    limiter = 0
+    for index in range(len(queue.timeAtService)):
+        if limiter < 30:        
+            print(f'State: {index}, Time: {queue.timeAtService[index]}, Probability: {round((queue.timeAtService[index]/sim.time)*100,4)}%')
+        else:
+            break
+        limiter += 1
+    print(f'Losses: {queue.losses}')
+print(f'Simulation time: {sim.time}')
+print(f'Total losses: {sim.losses}')
 input()
